@@ -33,6 +33,7 @@ int main() {
         cola_enemigos.pop();
 
         int cantidad_golpes_cano = 0;
+        mini_canos_derrotados = 0;
 
         // Mejora de martillo cada 5 enemigos derrotados completos
         if (floor(enemigos_derrotados) > enemigos_derrotados_prev && ((int)floor(enemigos_derrotados)) % 5 == 0) {
@@ -70,21 +71,28 @@ int main() {
             // División de CANO
             if (actual.tipo_enemigo == 1) {
                 cantidad_golpes_cano++;
-                if (cantidad_golpes_cano == 2 && actual.vida_enemigo > 0) {
-                    while (mini_canos_derrotados < 2 && vida_mechon > 0){
-                        turno++;
-                        std::cout << "------------------------\nTurno " << turno << "\n------------------------\n";
-                        std::cout << "El mechon ataca con " << ataque_mechon << " de dano\n";
-                        
-                        if (!enemigo_dividido && actual.vida_enemigo <= 0) {
-                            if (actual.tipo_enemigo == 2) enemigos_derrotados += 0.5f;
-                            else enemigos_derrotados += 1.0f;
-                    }
+                if (cantidad_golpes_cano == 2 && actual.vida_enemigo > 0 && !enemigo_dividido) {
+                    enemigo_dividido = true;
+                    std::cout << "------------------------\nEl CANO se divide en 2 Mini-CANOS!\n";
+
+                    int vida_mini = std::floor(actual.vida_enemigo / 2);
+                    int ataque_mini = actual.ataque_enemigo - 1;
+
+                    // Verificaciones para que ningún stat sea menor a 1
+                    if (vida_mini < 1) vida_mini = 1;
+                    if (ataque_mini < 1) ataque_mini = 1;
+
+                    enemigo mini1 = {vida_mini, ataque_mini, 2};
+                    enemigo mini2 = mini1;
+
+                    cola_enemigos.push(mini1);
+                    cola_enemigos.push(mini2);
+                    break;
                 }
             }
         }
 
-        if (!enemigo_dividido && actual.vida_enemigo <= 0) {
+        if (actual.vida_enemigo <= 0) {
             if (actual.tipo_enemigo == 2) enemigos_derrotados += 0.5f;
             else enemigos_derrotados += 1.0f;
 
@@ -93,13 +101,13 @@ int main() {
         }
     }
 
-        std::cout << "------------------------\n\nFIN DE LA BATALLA\n";
-        if (vida_mechon > 0) {
-            std::cout << "El mechon ha sobrevivido con " << vida_mechon << " de vida!\nLARGA VIDA A OLOGNIA\n\n";
-        } else {
-            std::cout << "El mechon ha sido derrotado.\nOLOGNIA ESTA A LA MERCED DEL ENEMIGO\nQUE DIOS NOS AMPARE\n\n";
-        }
-
-        return 0;
+    // <- Aquí movimos el final fuera del while
+    std::cout << "------------------------\n\nFIN DE LA BATALLA\n";
+    if (vida_mechon > 0) {
+        std::cout << "El mechon ha sobrevivido con " << vida_mechon << " de vida!\nLARGA VIDA A OLOGNIA\n\n";
+    } else {
+        std::cout << "El mechon ha sido derrotado.\nOLOGNIA ESTA A LA MERCED DEL ENEMIGO\nQUE DIOS NOS AMPARE\n\n";
     }
+
+    return 0;
 }
