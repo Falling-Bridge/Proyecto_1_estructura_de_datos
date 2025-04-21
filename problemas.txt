@@ -1,0 +1,6 @@
+Por alguna razón no termina con la cola antes de terminar con el programa
+
+Falta implementar la batalla contra los mini_canos_derrotados
+
+Luego de haber terminado eso, ordenar y documentar
+(intenté usar nombres descriptivos)
