@@ -4,3 +4,7 @@ Falta implementar la batalla contra los mini_canos_derrotados
 
 Luego de haber terminado eso, ordenar y documentar
 (intenté usar nombres descriptivos)
+
+Tareas Vale: 
+falta contador de daño total que reciben los esbirros
+los miniCANO deben atacar de inmediato, según aparece en la pauta debe ser así.
