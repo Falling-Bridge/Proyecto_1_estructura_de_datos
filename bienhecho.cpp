@@ -1,13 +1,28 @@
-#include <iostream>
-#include <queue>
-#include <cmath>
+/** 
+ * @authors Lucas Morales Oyanedel y Valentina Serón Canales
+ * @date 26 de abril 2025
+ **/
 
-struct enemigo {
-    int vida_enemigo;
-    int ataque_enemigo;
-    int tipo_enemigo;
-};
-
+ #include <iostream>
+ #include <queue>
+ #include <cmath>
+ /**
+  * @struct enemigo: Representa los stats del esbirro
+  */
+ struct enemigo {
+     int vida_enemigo;
+     int ataque_enemigo;
+     int tipo_enemigo;
+ };
+ 
+ /**
+  * @param vida_mechon: guardará el número de vidas del mechon
+  * @param cantidad_enemigos: será el número de esbirros total (CANO o no) a los que el mechon debe enfrentarse
+  * @param turno: contador del número de turnos jugados por el mechon
+  * @param ataque_mechon: número de daño que hace el mechon (este valor aumenta cada 5 esbirros derrotados exitosamente)
+  * @param mini_canos_derrotados: número de mini CANOs derrotados por el mechon
+  * 
+  */
 int main() {
     int vida_mechon, cantidad_enemigos, turno = 0, ataque_mechon = 2, mini_canos_derrotados = 0;
     float enemigos_derrotados = 0.0;
