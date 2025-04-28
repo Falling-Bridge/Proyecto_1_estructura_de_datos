@@ -12,7 +12,7 @@
  struct enemigo {
      int vida_enemigo;
      int ataque_enemigo;
-     int tipo_enemigo;
+     int tipo_enemigo; // (esbirros:0 CANOs:1 miniCANOs:2)
  };
  
  /**
@@ -21,38 +21,48 @@
   * @param turno: contador del número de turnos jugados por el mechon
   * @param ataque_mechon: número de daño que hace el mechon (este valor aumenta cada 5 esbirros derrotados exitosamente)
   * @param mini_canos_derrotados: número de mini CANOs derrotados por el mechon
-  * 
+  * @param enemigos_derrotados: número float de enemigos derrotados (esbirros y CANOs:1 miniCANOs:0.5)
   */
 int main() {
-    int vida_mechon, cantidad_enemigos, turno = 0, ataque_mechon = 2, mini_canos_derrotados = 0;
+    int vida_mechon, cantidad_enemigos, turno = 0, ataque_mechon = 2, mini_canos_derrotados = 0, dano_provocado=0;
     float enemigos_derrotados = 0.0;
     std::cin >> vida_mechon >> cantidad_enemigos;
 
     if (vida_mechon <= 0 || cantidad_enemigos <= 0) return -1;
-
+    // @struct enemigo, se define la estructura según la cantidad de enemigos que se ingresa 
     enemigo Enemy[cantidad_enemigos];
 
+    // cada ciclo irá llenando los tres parametros que conforman un enemigo (sus stats)
     for (int i = 0; i < cantidad_enemigos; ++i) std::cin >> Enemy[i].vida_enemigo;
     for (int i = 0; i < cantidad_enemigos; ++i) std::cin >> Enemy[i].ataque_enemigo;
     for (int i = 0; i < cantidad_enemigos; ++i) std::cin >> Enemy[i].tipo_enemigo;
 
+    /**
+     * La siguiente adt queue (cola) será usada para colocar todos los enemigos.
+     * El primer enemigo en atacar será el primero en la cola del queue. 
+     */
     std::queue<enemigo> cola_enemigos;
     for (int i = 0; i < cantidad_enemigos; ++i) {
         cola_enemigos.push(Enemy[i]);
     }
 
-    int enemigos_derrotados_prev = 0;
+    int enemigos_derrotados_prev = 0; // entero auxiliar para definir cantidad entera de enemigos derrotados
 
+    // siembre que existan enemigos en la cola y el mechon este vivo, jugamos
     while (vida_mechon > 0 && !cola_enemigos.empty()) {
-        enemigo actual = cola_enemigos.front();
+        enemigo actual = cola_enemigos.front(); 
         cola_enemigos.pop();
 
-        int cantidad_golpes_cano = 0;
+        /** @param cantidad_golpes_cano: cantidad entera de golpes que tiene un enemigo tipo CANO antes de su división */
+        int cantidad_golpes_cano = 0; 
         mini_canos_derrotados = 0;
 
-        // Mejora de martillo cada 5 enemigos derrotados completos
+        /**
+         * Mejora de martillo cada 5 enemigos derrotados completos
+         * 
+         */
         if (floor(enemigos_derrotados) > enemigos_derrotados_prev && ((int)floor(enemigos_derrotados)) % 5 == 0) {
-            std::cout << "------------------------\nTras haber derrotado a 5 enemigos, el mechon ha mejorado el martillo chillon\n";
+            std::cout << "------------------------\nTras haber derrotado a 5 enemigos, el mechon ha mejorado el martillo chillón\n";
             std::cout << "actualizacion de dano: " << ataque_mechon << " -> " << ataque_mechon + 1 << "\n";
             ataque_mechon++;
             enemigos_derrotados_prev = (int)floor(enemigos_derrotados);
@@ -72,9 +82,12 @@ int main() {
 
             int vida_anterior = actual.vida_enemigo;
             actual.vida_enemigo -= ataque_mechon;
+            dano_provocado += ataque_mechon;
+            if (actual.vida_enemigo < 0) dano_provocado = dano_provocado - 1;
             if (actual.vida_enemigo < 0) actual.vida_enemigo = 0;
 
             std::cout << "Vida del enemigo: " << vida_anterior << " -> " << actual.vida_enemigo << std::endl;
+            
 
             if (actual.vida_enemigo > 0) {
                 int vida_anterior_mechon = vida_mechon;
@@ -106,11 +119,11 @@ int main() {
                 }
             }
         }
-
+        
         if (actual.vida_enemigo <= 0) {
             if (actual.tipo_enemigo == 2) enemigos_derrotados += 0.5f;
             else enemigos_derrotados += 1.0f;
-
+            // si la vida del enemigo es negativa, el daño causado por el mechon se resta en 1
             std::cout << "------------------------\nEl " << tipoNombre << " ha sido derrotado.\n";
             std::cout << "Enemigos derrotados: " << enemigos_derrotados << "/" << cantidad_enemigos << "\n";
         }
@@ -119,7 +132,8 @@ int main() {
     // <- Aquí movimos el final fuera del while
     std::cout << "------------------------\n\nFIN DE LA BATALLA\n";
     if (vida_mechon > 0) {
-        std::cout << "El mechon ha sobrevivido con " << vida_mechon << " de vida!\nLARGA VIDA A OLOGNIA\n\n";
+        std::cout << "El mechon ha sobrevivido con " << vida_mechon << " de vida!\n";
+        std::cout << "El mechon ha proporcionado un dano de " << dano_provocado << " a los enemigos!\nLARGA VIDA A OLOGNIA\n\n";
     } else {
         std::cout << "El mechon ha sido derrotado.\nOLOGNIA ESTA A LA MERCED DEL ENEMIGO\nQUE DIOS NOS AMPARE\n\n";
     }
