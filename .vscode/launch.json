@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/hiref/OneDrive/Escritorio/Visual Studio/cpp/proy",
-      "program": "c:/Users/hiref/OneDrive/Escritorio/Visual Studio/cpp/proy/build/Debug/outDebug",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/bien.exe",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
