@@ -27,9 +27,15 @@ Lucas Morales Oyanedel y Valentina Serón Canales
 Para **compilar** el código por CMD (Windows), debe ir a la carpeta del proyecto y utilizar uno de los siguientes comandos:
 
     c++ ./src/Olognia.cpp -o ./src/Olognia.exe -Wall -g -O2
-o en su defecto
+.      
 
     g++ ./src/Olognia.cpp -o ./src/Olognia.exe -Wall -g -O2
+.
+
+    gcc ./src/Olognia.cpp -o ./src/Olognia.exe -Wall -g -O2
+.
+
+    cpp ./src/Olognia.cpp -o ./src/Olognia.exe -Wall -g -O2
 
 En caso de estar ya en la carpeta 'src', simplemente use:
     
