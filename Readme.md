@@ -31,6 +31,32 @@ Si está dentro de la carpeta 'src'
     
     Olognia.exe 
 
+Si desea probar el código con uno de los casos de prueba descritos más abajo, puede usar el siguiente comando:
+
+    ./src/Olognia.exe < "casos de prueba/caso1.txt"
+
+.
+
+    ./src/Olognia.exe < "casos de prueba/caso2.txt"
+
+.
+
+    ./src/Olognia.exe < "casos de prueba/caso3.txt"
+
+
+o en caso de no estar dentro de la carpeta 'src'
+
+    ./Olognia.exe < "casos de prueba/caso1.txt"
+
+.
+
+    ./Olognia.exe < "casos de prueba/caso1.txt"
+
+.
+
+    ./Olognia.exe < "casos de prueba/caso1.txt"
+
+
 ---
 
 ## Aclaraciones
