@@ -37,44 +37,40 @@ Para **compilar** el código por CMD (Windows), debe ir a la carpeta del proyect
 
     cpp ./src/Olognia.cpp -o ./src/Olognia.exe -Wall -g -O2
 
-En caso de estar ya en la carpeta 'src', simplemente use:
-    
-    c++ Olognia.cpp -o Olognia.exe -Wall -g -O2
-
 Para **ejecutar** el código por CMD (en caso de querer hacer una entrada manual de datos):
 
 desde la raíz del proyecto  
     
-    ./src/Olognia.exe
+    src\Olognia.exe
 
 Si está dentro de la carpeta 'src'
     
     Olognia.exe 
 
-Si desea probar el código con uno de los casos de prueba descritos más abajo, puede usar el siguiente comando:
+Si desea probar el código con uno de los casos de prueba descritos más abajo, puede usar el siguiente comando, en caso de no estar dentro de la carpeta 'src':
 
-    ./src/Olognia.exe < "casos de prueba/caso1.txt"
-
-.
-
-    ./src/Olognia.exe < "casos de prueba/caso2.txt"
+    src\Olognia.exe < "casos de prueba\caso1.txt"
 
 .
 
-    ./src/Olognia.exe < "casos de prueba/caso3.txt"
-
-
-o en caso de no estar dentro de la carpeta 'src'
-
-    ./Olognia.exe < "casos de prueba/caso1.txt"
+    src\Olognia.exe < "casos de prueba\caso2.txt"
 
 .
 
-    ./Olognia.exe < "casos de prueba/caso1.txt"
+     src\Olognia.exe < "casos de prueba\caso3.txt"
+
+
+o en caso de estar dentro de la carpeta 'src'
+
+    Olognia.exe < "..\casos de prueba\caso1.txt"
 
 .
 
-    ./Olognia.exe < "casos de prueba/caso1.txt"
+    Olognia.exe < "..\casos de prueba\caso2.txt"
+
+.
+
+    Olognia.exe < "..\casos de prueba\caso3.txt"
 
 ---
 
