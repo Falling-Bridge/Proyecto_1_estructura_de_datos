@@ -8,6 +8,20 @@ Lucas Morales Oyanedel y Valentina Serón Canales
 
 ---
 
+## Aclaraciones
+
+- El código está pensado para sistema operativo Windows, no se garantiza que funcione para otros sistemas operativos
+  
+- El orden de ataque es:
+    1. Ataca primero el mechón
+    2. Luego ataca el enemigo (si aún sobrevive)
+
+- Al dividirse un CANO, los enemigos resultantes se llaman *miniCANOs*
+- A los miniCANOs se les asigna el tipo de enemigo `'2'`
+- El daño inicial del mechón es **2**
+
+---
+
 ## Cómo trabajar con el código:
 
 Para **compilar** el código por CMD (Windows), debe ir a la carpeta del proyecto y utilizar uno de los siguientes comandos:
@@ -55,19 +69,6 @@ o en caso de no estar dentro de la carpeta 'src'
 .
 
     ./Olognia.exe < "casos de prueba/caso1.txt"
-
-
----
-
-## Aclaraciones
-
-- El orden de ataque es:
-    1. Ataca primero el mechón
-    2. Luego ataca el enemigo (si aún sobrevive)
-
-- Al dividirse un CANO, los enemigos resultantes se llaman *miniCANOs*
-- A los miniCANOs se les asigna el tipo de enemigo `'2'`
-- El daño inicial del mechón es **2**
 
 ---
 
