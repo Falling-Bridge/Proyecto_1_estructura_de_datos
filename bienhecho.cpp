@@ -117,6 +117,7 @@
      if (vida_mechon > 0) {
          std::cout << "El mechon ha sobrevivido con " << vida_mechon << " de vida!\n";
          std::cout << "El mechon ha proporcionado un dano de " << dano_provocado << " a los enemigos!\nLARGA VIDA A OLOGNIA\n\n";
+         std::cout << "EZ pizi\n";
      } else {
          std::cout << "El mechon ha sido derrotado.\nOLOGNIA ESTA A LA MERCED DEL ENEMIGO\nQUE DIOS NOS AMPARE\n\n";
      }
